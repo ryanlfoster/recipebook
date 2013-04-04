@@ -1,0 +1,9 @@
+body {
+    background: white;
+    margin: 20px;
+}
+
+.cke_editable {
+    font-size: 13px;
+    line-height: 1.6em;
+}

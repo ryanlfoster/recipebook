@@ -1,0 +1,35 @@
+<div class="row large-12 columns recipeViewWrapper" ng-controller="ViewRecipeCtrl">
+    <fieldset>
+        <legend>
+            <span ng-bind="recipe.name"></span>
+        </legend>
+        <div class="clearfix">
+            <div class="alert-box alert" ng-show="page.loadFailure">
+                There was an error loading the recipe. Make sure you have the id correct and that marklogic is started.
+                <a href="#" class="close" close>&times;</a>
+            </div>
+            <div class="alert-box success" ng-show="page.saveMessage">
+                This recipe was successfully saved.
+                <a href="#" class="close" close>&times;</a>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div ng-show="recipe.image"><img ng-src="{{recipe.image}}" /></div>
+            <div id="instructions"></div>
+        </div>
+        <div class="clearfix fieldsetButtonsTop">
+            <div class="right">
+                <a href="" font-size-grow="#instructions" class="button small"><span class="icon-plus"></span></a>
+                <a href="" font-size-shrink="#instructions" class="button small"><span class="icon-minus"></span></a>
+                <a href="" font-size-reset="#instructions" class="button small"><span class="icon-spinner"></span></a>
+
+                <a href="{{edit(recipe.id)}}" class="button small">Edit</a>
+            </div>
+        </div>
+        <div class="clearfix fieldsetButtonsBottom">
+            <div class="right">
+                <a href="{{edit(recipe.id)}}" class="button small">Edit</a>
+            </div>
+        </div>
+    </fieldset>
+</div>

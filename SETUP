@@ -1,0 +1,47 @@
+Backup old db
+
+Upgrade to ML 6
+
+Create REST db:
+Start marklogic
+curl --anyauth --user admin:admin -X POST -d'<rest-api xmlns="http://marklogic.com/rest-api"><name>evas-recipes</name></rest-api>'     -H "Content-type: application/xml"     http://localhost:8002/v1/rest-apis
+(get port of http server)
+Set the port in server/app.js
+
+Set Marklogic db search settings:
+Set all to true so that you can search
+
+Add Element Range Index:rating
+scalar type:int
+namespace uri:http://marklogic.com/xdmp/json/basic
+localname:rating
+range value positions:true
+
+Add Element Range Index:category
+scalar type:string
+namespace uri:http://marklogic.com/xdmp/json/basic
+localname:category
+range value positions:true
+
+Add Element Range Index:archived
+scalar type:string
+namespace uri:http://marklogic.com/xdmp/json/basic
+localname:archived
+range value positions:true
+
+Install node:
+Install http-proxy:
+sudo npm install http-proxy
+
+Run from root of project
+/usr/bin/node server/app.js
+
+CKEDITOR
+Goto http://ckeditor.com/builder
+Select plugins
+Standard
+Autogrow
+etc
+Download
+
+Then extract to js/ckeditor

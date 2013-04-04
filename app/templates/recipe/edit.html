@@ -1,0 +1,74 @@
+<div class="row large-12 columns recipeEditWrapper" ng-controller="EditRecipeCtrl">
+
+    <form action="" name="recipeForm" class="custom">
+        <input type="hidden" ng-model="recipe.id">
+        <fieldset>
+            <legend class="wide">
+                <input type="text" placeholder="Enter Recipe Name" ng-required="true" name="name" ng-model="recipe.name" ng-class="{error: page.showErrors && recipeForm.name.$error.required}"/>
+                <small class="error" ng-show="page.showErrors && recipeForm.name.$error.required">Name is required</small>
+            </legend>
+            <div class="clearfix">
+                <div class="alert-box alert" ng-show="page.saveFailure">
+                    There was an error saving. Please try again later. Make sure that marklogic is started.
+                    <a href="#" class="close" close>&times;</a>
+                </div>
+                <div class="alert-box alert" ng-show="page.loadFailure">
+                    There was an error loading the recipe. Make sure you have the id correct and that marklogic is started.
+                    <a href="#" class="close" close>&times;</a>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label>
+                    <textarea id="instructions" type="text" placeholder="Instructions" name="instructions" ng-model="recipe.instructions" ck-editor></textarea>
+                </label>
+            </div>
+            <div class="clearfix categories">
+                <fieldset>
+                    <legend>Categories <small>(separate using commas)</small></legend>
+                    <div>
+                        <label>
+                            <input type="text" name="categories" class="large-6" categories-autocomplete ng-model="page.categories" />
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="clearfix additionalItems">
+                <fieldset>
+                    <legend>Additional Items</legend>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="archived" ng-model="recipe.archived"/>
+                            Archived
+                        </label>
+                        <label ng-show="recipe.image">
+                            Image
+                            <input type="text" name="image" ng-model="recipe.image" class="large-4"/>
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="clearfix fieldsetButtonsTop">
+                <div class="right">
+                    <a href="" class="button small" ng-click="save()" ng-class="{disabled:busy}">
+                        <span ng-show="!busy">Save</span>
+                        <span ng-show="busy">Saving...</span>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix fieldsetEditButtonsBottom">
+                <div class="left">
+                    <a href="{{view(recipe.id)}}" class="button small" ng-show="recipe.id">View</a>
+                </div>
+                <div class="text-center" style="display: none;">
+                    <a class="button small alert" ng-show="recipe.id">Delete</a>
+                </div>
+                <div class="right fieldsetButtonSave">
+                    <a href="" class="button small" ng-click="save()" ng-class="{disabled:busy}">
+                        <span ng-show="!busy">Save</span>
+                        <span ng-show="busy">Saving...</span>
+                    </a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
