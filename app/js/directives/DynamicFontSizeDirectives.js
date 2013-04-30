@@ -7,6 +7,7 @@ angular.module('app').directive('fontSizeReset', ['DynamicFontSize', function (D
         }
     };
 }]);
+
 angular.module('app').directive('fontSizeGrow', ['DynamicFontSize', function (DynamicFontSize) {
     return {
         link: function (scope, elm, attr) {

@@ -10,9 +10,6 @@ angular.module('app').controller('ViewRecipeCtrl', ['$scope', '$window', 'Recipe
 
     if(id) {
         Recipe.get(id, function(data) {
-            if(data.recipe.instructions) {
-                jQuery('#instructions').append(jQuery.parseHTML(data.recipe.instructions));
-            }
             $scope.recipe = data.recipe;
         }, function () {
             $scope.page.loadFailure = true;

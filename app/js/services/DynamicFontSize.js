@@ -11,6 +11,8 @@ angular.module('app').factory('DynamicFontSize', ['LocalStorage', function (Loca
          */
         set: function (selector, percentage) {
             $(selector + ' *').css('font-size', percentage + '%');
+            $(selector + ' *').css('line-height', percentage + '%');
+            $(selector + ' * img').css('zoom', percentage + '%');
             LocalStorage.set(key, percentage);
         },
         /**

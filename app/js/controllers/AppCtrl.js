@@ -1,5 +1,7 @@
 angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 'DynamicFontSize', 'MealPlan', 'Utilities', function ($rootScope, $scope, $window, DynamicFontSize, MealPlan, Utilities) {
 
+    $rootScope.DynamicFontSizeSelector = "#instructions";
+
     $rootScope.view = function (id) {
         return '/view.html?id=' + id;
     };
@@ -9,7 +11,7 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
     };
 
     $scope.loadContent = function () {
-        DynamicFontSize.set('.content', DynamicFontSize.get());
+        DynamicFontSize.set($rootScope.DynamicFontSizeSelector, DynamicFontSize.get());
     };
 
     $scope.addMealPlan = function (id) {
