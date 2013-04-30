@@ -35,6 +35,10 @@ angular.module('app').controller('MealPlan', ['$rootScope', '$scope', '$window',
         MealPlan.save(saveMealPlans);
     };
 
+    $scope.moveMealPlan = function (id) {
+        alert('TODO: move ' + id); //TODO move mealplans
+    };
+
     $scope.getMealPlans = function () {
         MealPlan.get(function (data) {
             if (data && angular.isArray(data.mealplans)) {
