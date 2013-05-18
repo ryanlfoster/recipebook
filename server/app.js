@@ -1,4 +1,5 @@
 var port = 8004; //Change to port for recipes
+var oldPort = 10100; //Change to port for old recipes
 
 var express = require('express');
 var fs = require('fs');
@@ -17,10 +18,12 @@ app.configure('development', function () {
 app.use(express.bodyParser());
 
 var marklogicProxy = httpProxy.createServer(port, 'localhost');
+var oldMarklogicProxy = httpProxy.createServer(oldPort, 'localhost');
 
 app.configure(function () {
     app.use(require('connect-restreamer')());
     app.use('/marklogic', marklogicProxy);
+    app.use('/oldmarklogic', oldMarklogicProxy);
 });
 
 app.listen(3000);

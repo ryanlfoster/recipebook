@@ -69,12 +69,34 @@ angular.module('app').factory('Utilities', [ '$window', function ($window) {
         return array;
     }
 
+    function stringtoXML(text){
+        if (window.ActiveXObject){
+            var doc=new ActiveXObject('Microsoft.XMLDOM');
+            doc.async='false';
+            doc.loadXML(text);
+        } else {
+            var parser=new DOMParser();
+            var doc=parser.parseFromString(text,'text/xml');
+        }
+        return doc;
+    }
+
+    function xmlToString(xml) {
+        if (window.ActiveXObject) {
+            return xml.xml;
+        } else {
+            return (new XMLSerializer()).serializeToString(xml);
+        }
+    }
+
     return {
         queryParam: function (key) {
             return QueryString[key];
         },
         parseHTML: jQuery.parseHTML,
         randomizeArray: shuffleArray,
-        cleanArray: cleanArray
+        cleanArray: cleanArray,
+        stringtoXML: stringtoXML,
+        xmlToString: xmlToString
     };
 }]);

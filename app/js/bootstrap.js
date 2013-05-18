@@ -11,10 +11,14 @@ require.config({
             'lib/jquery/jquery-1.9.1',
             'lib/jquery-ui/jquery-ui-1.10.2.custom',
             'lib/ckeditor/ckeditor',
-            'lib/uuid/uuid',
+            'lib/uuid/uuid'
+        ],
+        'lib/angular/angular-1.1.4/angular-resource': [
+            'lib/angular/angular-1.1.4/angular'
         ],
         'app': [
-            'lib/angular/angular-1.1.4/angular'
+            'lib/angular/angular-1.1.4/angular',
+            'lib/angular/angular-1.1.4/angular-resource'
         ]
     },
     paths: {

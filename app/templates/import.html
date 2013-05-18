@@ -1,0 +1,22 @@
+<div class="row large-12 columns recipeEditWrapper" ng-controller="ImportRecipeCtrl">
+
+    <form action="" name="importForm" class="custom">
+        <fieldset>
+            <br/>
+            <div class="clearfix">
+                <div ng-repeat="message in messages"><span ng-bind-html-unsafe="message"></span></div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="clearfix fieldsetButtonsTop">
+                <div class="right fieldsetButtonSave">
+                    <a href="" class="button small" ng-click="import()" ng-class="{disabled:busy}">
+                        <span ng-show="!busy">Import</span>
+                        <span ng-show="busy">Importing...</span>
+                    </a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

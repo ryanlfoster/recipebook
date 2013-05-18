@@ -1,6 +1,7 @@
-angular.module('app').controller('EditRecipeCtrl', ['$rootScope','$scope', '$timeout', '$window', '$q', 'Recipe', 'Utilities', function ($rootScope, $scope, $timeout, $window, $q, Recipe, Utilities) {
+angular.module('app').controller('EditRecipeCtrl', ['$rootScope', '$scope', '$timeout', '$window', '$q', 'Recipe', 'Utilities', function ($rootScope, $scope, $timeout, $window, $q, Recipe, Utilities) {
 
     $scope.busy = false;
+    $scope.loaded = false;
     $scope.page = {
         showErrors: false,
         saveFailure: false,
@@ -24,7 +25,7 @@ angular.module('app').controller('EditRecipeCtrl', ['$rootScope','$scope', '$tim
                     categoryArr.push(result.category);
                 });
 
-                if(categoryArr.length) {
+                if (categoryArr.length) {
                     // add placeholder to get the comma-and-space at the end
                     categoryArr.push("");
                 }
@@ -47,12 +48,20 @@ angular.module('app').controller('EditRecipeCtrl', ['$rootScope','$scope', '$tim
     });
 
     $q.all([recipeReady, ckeditorReady]).then(function () {
-            if ($scope.recipe && $scope.recipe.instructions) {
-                CKEDITOR.instances.instructions.setData($scope.recipe.instructions);
-            }
-    }, function() {
+        if (!$scope.loaded && $scope.recipe && $scope.recipe.instructions) {
+            $scope.loaded = true;
+            CKEDITOR.instances.instructions.setData($scope.recipe.instructions);
+        }
+    }, function () {
         $scope.page.loadFailure = true;
     });
+
+    $timeout(function() {
+       if(!$scope.loaded && $scope.recipe && $scope.recipe.instructions) {
+           $scope.loaded = true;
+           CKEDITOR.instances.instructions.setData($scope.recipe.instructions);
+       }
+    }, 1000);
 
     $scope.save = function () {
         if ($scope.busy) {
