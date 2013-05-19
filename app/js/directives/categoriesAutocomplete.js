@@ -38,7 +38,7 @@ angular.module('app').directive('categoriesAutocomplete', ['$timeout', 'Recipe',
                             }
 
                             response($.ui.autocomplete.filter(results, extractLast(request.term)));
-                        }, function (data) {
+                        }, function () {
                             response([]);
                         });
                     },

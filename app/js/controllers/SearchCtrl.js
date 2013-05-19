@@ -90,7 +90,7 @@ angular.module('app').controller('SearchCtrl', ['$rootScope', '$scope', '$window
                 }
                 $scope.page.busy = false;
             }
-        }, function (data) {
+        }, function () {
             if (init) {
                 init = false;
                 $scope.page.loadFailure = true;

@@ -12,16 +12,17 @@ angular.module('app').factory('Marklogic', ['$http', function ($http) {
                 'Accept': 'application/json'
             },
             data: data,
-            params: params
+            params: params,
+            cache: false
         };
 
-        $http(httpOptions).success(function (data, status, headers, config) {
+        $http(httpOptions).then(function (response) {
             if (angular.isFunction(successCallback)) {
-                successCallback(data);
+                successCallback(response.data);
             }
-        }).error(function (data, status, headers, config) {
+        }, function (response) {
             if (angular.isFunction(errorCallback)) {
-                errorCallback(data);
+                errorCallback(response.data);
             }
         });
     }

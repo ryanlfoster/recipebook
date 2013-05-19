@@ -21,19 +21,18 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
 
                 data.mealplans = Utilities.cleanArray(data.mealplans, 'mealplan');
 
-                MealPlan.save(data.mealplans, function (data) {
+                MealPlan.save(data.mealplans, function () {
                     $rootScope.$broadcast('addMealPlan', id);
-                }, function (data) {
+                }, function () {
                     alert("error!");
                 });
 
             }
         }, function (data) {
-            //create emp
             if (data && data.indexOf('RESTAPI-NODOCUMENT') != -1) {
-                MealPlan.save([], function (data) {
+                MealPlan.save([], function () {
                     $scope.addMealPlan(id);
-                }, function (data) {
+                }, function () {
                     alert("error!");
                 });
             }

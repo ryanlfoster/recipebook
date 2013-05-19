@@ -16,7 +16,7 @@ angular.module('app').controller('EditRecipeCtrl', ['$rootScope', '$scope', '$ti
 
     if (id) {
         Recipe.get(id, function (data) {
-            if (data.recipe) {
+            if (data && data.recipe) {
                 $scope.recipe = data.recipe;
                 var categoryArr = [];
 

@@ -2,7 +2,6 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
 
     $scope.mealPlans = [];
 
-    //CustomMeals
     $scope.sortableOptions = {
         cursor: 'crosshair',
         forceHelperSize: true,
@@ -32,7 +31,7 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
      */
     $scope.$on('addMealPlan', function (event, id, index) {
         Recipe.get(id, function (data) {
-            if (data.recipe) {
+            if (data && data.recipe) {
                 if(jQuery.isNumeric(index) && !$scope.mealPlans[index]) {
                     $scope.mealPlans[index] = data.recipe;
                 } else {
@@ -56,10 +55,6 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
         MealPlan.save(saveMealPlans);
     };
 
-    $scope.moveMealPlan = function (id) {
-        alert('TODO: move ' + id); //TODO move mealplans
-    };
-
     $scope.getMealPlans = function () {
         MealPlan.get(function (data) {
             if (data && angular.isArray(data.mealplans)) {
@@ -67,8 +62,6 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
                     $rootScope.$broadcast('addMealPlan', value.mealplan, key);
                 });
             }
-        }, function (data) {
-            var i = '';
         });
     };
 
