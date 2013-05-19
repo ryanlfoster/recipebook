@@ -17,15 +17,14 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
     $scope.addMealPlan = function (id) {
         MealPlan.get(function (data) {
             if (data && angular.isArray(data.mealplans)) {
-                data.mealplans.push({
-                    mealplan: id
-                });
+                data.mealplans.push(MealPlan.createMealPlanObj(id));
 
                 data.mealplans = Utilities.cleanArray(data.mealplans, 'mealplan');
 
                 MealPlan.save(data.mealplans, function (data) {
                     $rootScope.$broadcast('addMealPlan', id);
                 }, function (data) {
+                    alert("error!");
                 });
 
             }
@@ -35,6 +34,7 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
                 MealPlan.save([], function (data) {
                     $scope.addMealPlan(id);
                 }, function (data) {
+                    alert("error!");
                 });
             }
         });

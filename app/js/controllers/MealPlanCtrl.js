@@ -1,4 +1,4 @@
-angular.module('app').controller('MealPlan', ['$rootScope', '$scope', '$window', 'Recipe', 'MealPlan', 'Utilities', function ($rootScope, $scope, $window, Recipe, MealPlan, Utilities) {
+angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$window', 'Recipe', 'MealPlan', 'Utilities', function ($rootScope, $scope, $window, Recipe, MealPlan, Utilities) {
 
     $scope.mealPlans = [];
 
@@ -25,9 +25,7 @@ angular.module('app').controller('MealPlan', ['$rootScope', '$scope', '$window',
         angular.forEach($scope.mealPlans, function(recipe, key) {
             if(recipe.id != id) {
                 newMealPlans.push(recipe);
-                saveMealPlans.push({
-                    mealplan: recipe.id
-                });
+                saveMealPlans.push(MealPlan.createMealPlanObj(recipe.id));
             }
         });
 

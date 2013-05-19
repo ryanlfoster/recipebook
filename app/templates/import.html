@@ -11,9 +11,9 @@
             <br/>
             <div class="clearfix fieldsetButtonsTop">
                 <div class="right fieldsetButtonSave">
-                    <a href="" class="button small" ng-click="import()" ng-class="{disabled:busy}">
-                        <span ng-show="!busy">Import</span>
-                        <span ng-show="busy">Importing...</span>
+                    <a href="" class="button small" ng-click="import()" ng-class="{disabled:(busy && busycm)}">
+                        <span ng-show="!(busy && busycm)">Import</span>
+                        <span ng-show="busy && busycm">Importing...</span>
                     </a>
                 </div>
             </div>
