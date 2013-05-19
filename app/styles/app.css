@@ -459,7 +459,7 @@ body.big3 .content *{font-size:115% !important}
 fieldset{position:relative}
 fieldset legend{background:none}
 .sub-nav{text-align:right}
-.sub-nav dt,.sub-nav dd{float:none;display:block;margin:0}
+.sub-nav dt,.sub-nav dd{float:none;display:block;margin:0;line-height:4em}
 .loading{background:url("images/loading.gif") 0 0 no-repeat transparent;width:200px;height:200px;margin:0 auto}
 .loading-small{background:url("images/loading-small.gif") 0 0 no-repeat transparent;width:16px;height:16px;float:right;position:relative;top:-33px;right:6px}
 .recipeEditWrapper fieldset legend.wide{width:30%}

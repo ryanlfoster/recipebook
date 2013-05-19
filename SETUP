@@ -8,7 +8,8 @@ curl --anyauth --user admin:admin -X POST -d'<rest-api xmlns="http://marklogic.c
 (get port of http server)
 OR
 Goto http://localhost:8000/appservices/
-Click Deliver
+Click New Database
+Name: RESTDB
 Click Configure
 Click Add New REST API Instance
  Name:RESTRecipes
@@ -16,7 +17,12 @@ Click Add New REST API Instance
 Set the port in server/app.js
 
 Set Marklogic db search settings:
+
+http://localhost:8001/
+Click on RESTDB
 Set all to true so that you can search
+Click on RESTRecipes
+Change authentication to application-level:admin
 
 Add Element Range Index:rating
 scalar type:int
@@ -36,12 +42,13 @@ namespace uri:http://marklogic.com/xdmp/json/basic
 localname:archived
 range value positions:true
 
-Install node:
-Install http-proxy:
-sudo npm install http-proxy
+Install node
 
 Run from root of project
+npm install
 /usr/bin/node server/app.js
+
+Got to localhost:3000/import.html
 
 CKEDITOR
 Goto http://ckeditor.com/builder

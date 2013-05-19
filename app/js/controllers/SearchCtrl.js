@@ -107,6 +107,7 @@ angular.module('app').controller('SearchCtrl', ['$rootScope', '$scope', '$window
     $scope.clearSearchQuery = function () {
         $('#query').val('');
         $scope.searchForm.query.$setViewValue('');
+        $scope.performSearch();
     };
 
     $scope.getSearchParams = function () {

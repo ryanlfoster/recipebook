@@ -1,7 +1,49 @@
 <meta charset="utf-8">
 <title>Eva's Recipe Book</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<meta http-equiv="cleartype" content="on"/>
+<meta name="MobileOptimized" content="320"/>
+<meta name="HandheldFriendly" content="True"/>
+
+<!--
+*************************************************************************************
+CSS
+*************************************************************************************
+-->
 <link rel="stylesheet" href="styles/reset.css"/>
 <link rel="stylesheet" href="styles/normalize.css"/>
-<link rel="stylesheet" href="styles/foundation.css"/>
+<link rel="stylesheet" href="styles/foundation/foundation_mobile.css"/>
+
+<style type="text/css" media="all and (min-width: 768px) and (min-device-width: 768px)">
+    @import url("styles/foundation/foundation_768.css");
+</style>
+
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" href="styles/foundation/foundation_768.css" media="all"/>
+<![endif]-->
+
 <link rel="stylesheet" href="styles/jquery-ui/jquery-ui-1.10.2.custom.css"/>
 <link rel="stylesheet" href="styles/app.css"/>
+
+<!--
+*************************************************************************************
+SCRIPTS For IE
+*************************************************************************************
+-->
+
+<!--[if lt IE 9]>
+<script src="js/lib/html5.js"></script>
+<script src="js/lib/json3.js"></script>
+<script type="text/javascript">
+    document.createElement('ng-include');
+    document.createElement('ng-pluralize');
+    document.createElement('ng-controller');
+    document.createElement('ng-view');
+    document.createElement('ng:include');
+    document.createElement('ng:pluralize');
+    document.createElement('ng:view');
+</script>
+<![endif]-->
