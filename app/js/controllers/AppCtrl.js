@@ -1,5 +1,6 @@
 angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 'DynamicFontSize', 'MealPlan', 'Utilities', function ($rootScope, $scope, $window, DynamicFontSize, MealPlan, Utilities) {
 
+    $rootScope.error = {};
     $rootScope.DynamicFontSizeSelector = "#instructions";
 
     $rootScope.view = function (id) {
@@ -24,7 +25,7 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
                 MealPlan.save(data.mealplans, function () {
                     $rootScope.$broadcast('addMealPlan', id);
                 }, function () {
-                    alert("error!");
+                    $rootScope.$broadcast('error', 100);
                 });
 
             }
@@ -33,9 +34,13 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
                 MealPlan.save([], function () {
                     $scope.addMealPlan(id);
                 }, function () {
-                    alert("error!");
+                    $rootScope.$broadcast('error', 101);
                 });
             }
         });
     };
+
+    $scope.$on('error', function (event, code) {
+        $scope.error.code = code;
+    });
 }]);

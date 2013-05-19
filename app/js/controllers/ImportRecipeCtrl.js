@@ -90,7 +90,7 @@ angular.module('app').controller('ImportRecipeCtrl', ['$rootScope', '$scope', '$
                     $scope.busy = false;
                 }).error(function (data, status, headers, config) {
                     $scope.busy = false;
-                    alert('error!');
+                    $rootScope.$broadcast('error', 102);
                 });
             } else {
                 $scope.busy = false;
@@ -112,11 +112,11 @@ angular.module('app').controller('ImportRecipeCtrl', ['$rootScope', '$scope', '$
                         $scope.messages.push("Added Custom Meals");
                     }, function() {
                         $scope.busycm = false;
-                        alert('error!');
+                        $rootScope.$broadcast('error', 103);
                     });
                 }).error(function (data, status, headers, config) {
                     $scope.busycm = false;
-                    alert('error!');
+                    $rootScope.$broadcast('error', 104);
                 });
             } else {
                 $scope.busycm = false;

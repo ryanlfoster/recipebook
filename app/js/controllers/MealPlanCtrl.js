@@ -17,9 +17,9 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
             }
 
             MealPlan.save(MealPlan.createMealPlansArr(ids), function() {
-                alert('success!');
+
             }, function() {
-                alert('error!');
+                $rootScope.$broadcast('error', 105);
             });
         }
     };

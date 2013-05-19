@@ -6,6 +6,13 @@ Create REST db:
 Start marklogic
 curl --anyauth --user admin:admin -X POST -d'<rest-api xmlns="http://marklogic.com/rest-api"><name>evas-recipes</name></rest-api>'     -H "Content-type: application/xml"     http://localhost:8002/v1/rest-apis
 (get port of http server)
+OR
+Goto http://localhost:8000/appservices/
+Click Deliver
+Click Configure
+Click Add New REST API Instance
+ Name:RESTRecipes
+ Port:8004
 Set the port in server/app.js
 
 Set Marklogic db search settings:
