@@ -44,7 +44,7 @@
         <div ng-controller="MealPlanCtrl">
             <h5>Meal Plan <small>{{mealPlans.length}} Total</small></h5>
             <div class="panel">
-                <ul class="side-nav">
+                <ul class="side-nav" ui-sortable="sortableOptions" ng-model="mealPlans" >
                     <li ng-repeat="recipe in mealPlans">
                         <div mealplan recipe="recipe">&#160;</div>
                     </li>

@@ -2,6 +2,29 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
 
     $scope.mealPlans = [];
 
+    //CustomMeals
+    $scope.sortableOptions = {
+        cursor: 'crosshair',
+        forceHelperSize: true,
+        forcePlaceholderSize: true,
+        placeholder: 'ui-state-highlight',
+        revert: true,
+        handle: '.ui-icon.move',
+        stop: function (event, ui) {
+            var ids = [];
+
+            for(var i = 0; i < $scope.mealPlans.length; i++) {
+                ids[i] = $scope.mealPlans[i].id;
+            }
+
+            MealPlan.save(MealPlan.createMealPlansArr(ids), function() {
+                alert('success!');
+            }, function() {
+                alert('error!');
+            });
+        }
+    };
+
     /**
      * @param event
      * @param id Id if recipe
