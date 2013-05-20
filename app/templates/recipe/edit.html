@@ -59,8 +59,8 @@
                 <div class="left">
                     <a href="{{view(recipe.id)}}" class="button small" ng-show="recipe.id">View</a>
                 </div>
-                <div class="text-center" style="display: none;">
-                    <a class="button small alert" ng-show="recipe.id">Delete</a>
+                <div class="text-center">
+                    <a class="button small alert" ng-show="recipe.id" ng-click="delete()">Delete</a>
                 </div>
                 <div class="right fieldsetButtonSave">
                     <a href="" class="button small" ng-click="save()" ng-class="{disabled:busy}">

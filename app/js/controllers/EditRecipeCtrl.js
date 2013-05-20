@@ -56,11 +56,11 @@ angular.module('app').controller('EditRecipeCtrl', ['$rootScope', '$scope', '$ti
         $scope.page.loadFailure = true;
     });
 
-    $timeout(function() {
-       if(!$scope.loaded && $scope.recipe && $scope.recipe.instructions) {
-           $scope.loaded = true;
-           CKEDITOR.instances.instructions.setData($scope.recipe.instructions);
-       }
+    $timeout(function () {
+        if (!$scope.loaded && $scope.recipe && $scope.recipe.instructions) {
+            $scope.loaded = true;
+            CKEDITOR.instances.instructions.setData($scope.recipe.instructions);
+        }
     }, 1000);
 
     $scope.save = function () {
@@ -88,13 +88,29 @@ angular.module('app').controller('EditRecipeCtrl', ['$rootScope', '$scope', '$ti
 
             Recipe.save(recipe, function () {
                 $scope.busy = false;
-                $window.location.href = $rootScope.view(recipe.id) + '&save=true';
+                $rootScope.navigate( '/view.html', {id: recipe.id, save:true} );
             }, function () {
                 $scope.busy = false;
                 $scope.page.saveFailure = true;
             });
         } else {
             $scope.page.showErrors = true;
+        }
+    };
+
+    $scope.delete = function () {
+        if ($scope.busy) {
+            return;
+        }
+
+        if ($scope.recipe.id) {
+            if (confirm("Are you sure you want to delete " + $scope.recipe.name + "?")) {
+                Recipe.delete($scope.recipe.id, function () {
+                    $rootScope.navigate( '/');
+                }, function () {
+                    $rootScope.$broadcast('error', 106);
+                })
+            }
         }
     };
 

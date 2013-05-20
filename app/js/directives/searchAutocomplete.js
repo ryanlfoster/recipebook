@@ -48,7 +48,7 @@ angular.module('app').directive('searchAutocomplete', ['$rootScope', '$timeout',
                     return false;
                 },
                 select: function (event, ui) {
-                    $window.location.href = $rootScope.view(ui.item.value);
+                    $rootScope.navigate( '/view.html', {id: ui.item.value, save:true} );
                     return false;
                 }
             });

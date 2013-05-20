@@ -3,10 +3,12 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
     $rootScope.error = {};
     $rootScope.DynamicFontSizeSelector = "#instructions";
 
+    //Return string
     $rootScope.view = function (id) {
         return '/view.html?id=' + id;
     };
 
+    //Return string
     $rootScope.edit = function (id) {
         return '/edit.html?id=' + id;
     };
@@ -43,4 +45,9 @@ angular.module('app').controller('AppCtrl', ['$rootScope', '$scope', '$window', 
     $scope.$on('error', function (event, code) {
         $scope.error.code = code;
     });
+
+    //go to path
+    $rootScope.navigate = function(path, params) {
+        $window.location.href = path +  (params ? '?' + jQuery.param(params) : '');
+    }
 }]);

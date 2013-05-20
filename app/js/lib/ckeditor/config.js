@@ -31,4 +31,4 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Underline,Subscript,Superscript';
 };
 
-CKEDITOR.config.contentsCss = ['/styles/reset.css', '/styles/normalize.css', '/styles/foundation.css', '/styles/app.css', '/styles/ckeditor-overrides.css' ];
+CKEDITOR.config.contentsCss = ['/styles/reset.css', '/styles/normalize.css', '/styles/foundation/foundation_mobile.css', '/styles/app.css', '/styles/ckeditor-overrides.css' ];

@@ -39,10 +39,33 @@ angular.module('app').factory('MealPlan', ['Marklogic', 'Utilities', function (M
         };
     }
 
+    function removeMealPlan(id, successCallback, errorCallback) {
+        getMealPlans(function(data) {
+            if (data && angular.isArray(data.mealplans)) {
+
+                var ids = [];
+                angular.forEach(data.mealplans, function(value, key) {
+                    if(value && value.mealplan && value.mealplan != id) {
+                        ids.push(value.mealplan);
+                    }
+                });
+
+                replaceMealPlans(createMealPlansArr(ids), function(data) {
+                    getMealPlans(successCallback, errorCallback);
+                }, errorCallback);
+            } else {
+                if (angular.isFunction(errorCallback)) {
+                    errorCallback();
+                }
+            }
+        }, errorCallback);
+    }
+
     return {
         'get': getMealPlans,
         'save': replaceMealPlans,
         'createMealPlansArr': createMealPlansArr,
-        'createMealPlanObj': createMealPlanObj
+        'createMealPlanObj': createMealPlanObj,
+        'removeMealPlan': removeMealPlan
     };
 }]);

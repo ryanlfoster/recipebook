@@ -1,7 +1,7 @@
 angular.module('app').factory('Marklogic', ['$http', function ($http) {
 
     function callMarklogic(sMethod, sFunction, params, data, successCallback, errorCallback) {
-        if (!params['format']) {
+        if (sMethod != 'DELETE' && !params['format']) {
             params['format'] = 'json';
         }
 

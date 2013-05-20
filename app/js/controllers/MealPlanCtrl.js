@@ -12,13 +12,13 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
         stop: function (event, ui) {
             var ids = [];
 
-            for(var i = 0; i < $scope.mealPlans.length; i++) {
+            for (var i = 0; i < $scope.mealPlans.length; i++) {
                 ids[i] = $scope.mealPlans[i].id;
             }
 
-            MealPlan.save(MealPlan.createMealPlansArr(ids), function() {
+            MealPlan.save(MealPlan.createMealPlansArr(ids), function () {
 
-            }, function() {
+            }, function () {
                 $rootScope.$broadcast('error', 105);
             });
         }
@@ -32,7 +32,7 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
     $scope.$on('addMealPlan', function (event, id, index) {
         Recipe.get(id, function (data) {
             if (data && data.recipe) {
-                if(jQuery.isNumeric(index) && !$scope.mealPlans[index]) {
+                if (jQuery.isNumeric(index) && !$scope.mealPlans[index]) {
                     $scope.mealPlans[index] = data.recipe;
                 } else {
                     $scope.mealPlans.push(data.recipe);
@@ -42,17 +42,24 @@ angular.module('app').controller('MealPlanCtrl', ['$rootScope', '$scope', '$wind
     });
 
     $scope.removeMealPlan = function (id) {
-        var newMealPlans = [];
-        var saveMealPlans = [];
-        angular.forEach($scope.mealPlans, function(recipe, key) {
-            if(recipe.id != id) {
-                newMealPlans.push(recipe);
-                saveMealPlans.push(MealPlan.createMealPlanObj(recipe.id));
-            }
-        });
+        MealPlan.removeMealPlan(id, function (data) {
 
-        $scope.mealPlans = newMealPlans;
-        MealPlan.save(saveMealPlans);
+            if (data && angular.isArray(data.mealplans)) {
+
+                var newMealPlans = [];
+                angular.forEach($scope.mealPlans, function (recipe, key) {
+                    if (recipe.id != id) {
+                        newMealPlans.push(recipe);
+                    }
+                });
+
+                $scope.mealPlans = newMealPlans;
+            } else {
+                $rootScope.$broadcast('error', 107);
+            }
+        }, function () {
+            $rootScope.$broadcast('error', 108);
+        });
     };
 
     $scope.getMealPlans = function () {

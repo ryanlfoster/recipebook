@@ -1,4 +1,4 @@
-angular.module('app').factory('Recipe', ['$q', 'Marklogic', 'Utilities', function ($q, Marklogic, Utilities) {
+angular.module('app').factory('Recipe', ['$q', 'MealPlan', 'Marklogic', 'Utilities', function ($q, MealPlan, Marklogic, Utilities) {
 
     function initSearch(options) {
         var deferred = $q.defer();
@@ -240,9 +240,11 @@ angular.module('app').factory('Recipe', ['$q', 'Marklogic', 'Utilities', functio
     }
 
     function deleteRecipe(id, successCallback, errorCallback) {
-        Marklogic.callMarklogic('DELETE', 'documents', {
-            'uri': '/recipes/' + id + '.json'
-        }, {}, successCallback, errorCallback);
+        MealPlan.removeMealPlan(id, function () {
+            Marklogic.callMarklogic('DELETE', 'documents', {
+                'uri': '/recipes/' + id + '.json'
+            }, {}, successCallback, errorCallback);
+        }, errorCallback);
     }
 
     function getUUID() {
