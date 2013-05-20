@@ -1,4 +1,4 @@
-angular.module('app').directive('rating', ['$timeout', 'Recipe', function ($timeout, Recipe) {
+angular.module('app').directive('rating', ['$timeout', '$rootScope', 'Recipe', function ($timeout, $rootScope, Recipe) {
 
     function createStar(elm, recipeid, number) {
         $(elm).find(".starsArea" + number).each(function () {
@@ -19,18 +19,17 @@ angular.module('app').directive('rating', ['$timeout', 'Recipe', function ($time
     }
 
     function setRating(recipeid, number) {
-
         Recipe.get(recipeid, function(data) {
             if(data.recipe) {
                 data.recipe.rating = number;
-                Recipe.save(recipeid, data.recipe, null, function(){
-                    console.log('errorUPDATE');
+                Recipe.save(data.recipe, function(){}, function(){
+                    $rootScope.$broadcast('error', 109);
                 });
             } else {
-                console.log('errorSUCCESS');
+                $rootScope.$broadcast('error', 110);
             }
         }, function() {
-            console.log('errorGET');
+            $rootScope.$broadcast('error', 111);
         });
     }
 
