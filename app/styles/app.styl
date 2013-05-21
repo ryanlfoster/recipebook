@@ -1822,6 +1822,31 @@
   content: "\e1c2";
 }
 
+/*@group clearfix */
+
+.clearfix {
+  zoom: 1;
+  clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: '.';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/*@end clearfix */
+
 //general
 body {
   background: #eeeeee;
@@ -2026,6 +2051,8 @@ ul.ui-autocomplete a.ui-state-focus {
   -moz-transition: opacity 0.15s linear;
   -o-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
+
+  width: 100%;
 }
 
 .mealplan.callout {
@@ -2058,5 +2085,21 @@ ul.ui-autocomplete a.ui-state-focus {
 @media only screen and (min-width: 635px) {
   .cke_top {
     display: block !important;
+  }
+}
+
+@media only screen and (min-width: 128em) {
+  .mealplanWrapper > li {
+    padding: 0 4px;
+  }
+
+  .row .xlarge-6 {
+    position: relative;
+    width: 50%;
+  }
+
+  .row .large-6 {
+    position: relative;
+    width: 25%;
   }
 }

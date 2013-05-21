@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="columns searchResultText" ng-class="{'small-6':recipe.images[0], 'small-12':!recipe.images[0]}">{{recipe.text}}</div>
-                    <div class="small-6 columns" ng-show="recipe.images[0]"><a href="{{view(recipe.id)}}"><img ng-src="{{recipe.images[0]}}" /></a></div>
+                    <div class="small-6 columns" ng-show="recipe.images[0]"><a href="{{view(recipe.id)}}"><img ng-src="{{recipe.images[0]}}"/></a></div>
                 </div>
             </article>
         </div>
@@ -29,104 +29,119 @@
 
     <aside class="large-3 columns" ng-form="searchForm">
 
-        <h5>Search <small>{{searchTotal}} Results</small></h5>
-        <ul class="side-nav">
-            <li>
-                <label>
-                    <input type="text" id="query" name="query" ng-model="searchModel.query" placeholder="Type here to search" autofocus="" enter="performSearch()" search-autocomplete/>
-                </label>
-            </li>
-            <li><span class="loading-small ng-cloak" ng-show="page.busy">&#160;</span>
-                <span class="clearSearchQuery ng-cloak" ng-show="!page.busy" ng-click="clearSearchQuery()">&#160;</span>
-            </li>
-        </ul>
+        <div class="clearfix">
+            <h5>Search
+                <small>{{searchTotal}} Results</small>
+            </h5>
+            <ul class="side-nav">
+                <li>
+                    <label>
+                        <input type="text" id="query" name="query" ng-model="searchModel.query" placeholder="Type here to search" autofocus="" enter="performSearch()" search-autocomplete/>
+                    </label>
+                </li>
+                <li><span class="loading-small ng-cloak" ng-show="page.busy">&#160;</span>
+                    <span class="clearSearchQuery ng-cloak" ng-show="!page.busy" ng-click="clearSearchQuery()">&#160;</span>
+                </li>
+            </ul>
+        </div>
 
-        <div ng-controller="MealPlanCtrl">
-            <h5>Meal Plan <small>{{mealPlans.length}} Total</small></h5>
+        <div ng-controller="MealPlanCtrl" class="clearfix">
+            <h5>Meal Plan
+                <small>{{mealPlans.length}} Total</small>
+            </h5>
             <div class="panel">
-                <ul class="side-nav" ui-sortable="sortableOptions" ng-model="mealPlans" >
-                    <li ng-repeat="recipe in mealPlans">
+                <ul class="side-nav mealplanWrapper clearfix" ui-sortable="sortableOptions" ng-model="mealPlans">
+                    <li ng-repeat="recipe in mealPlans" class="columns xlarge-6">
                         <div mealplan recipe="recipe">&#160;</div>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <h5>Search Options</h5>
-        <div class="panel">
-            <div ng-show="searchFacets.rating.facetValues">
-                <h5>Rating<span class="alert-box alert round clearSearch" ng-show="searchModel.rating"><a href="" class="close" ng-click="clearSearchOption(searchModel, 'rating')">×</a></span></h5>
-                <ul class="side-nav">
-                    <li ng-repeat="facet in searchFacets.rating.facetValues" ng-click="performSearch()">
-                        <label>
-                            <input type="radio" name="rating" ng-model="searchModel.rating" value="{{facet.value}}"/>
-                            <span rating="facet.value" recipeid="">&#160;</span> ({{facet.count}})
-                        </label>
-                    </li>
-                </ul>
+        <div class="clearfix">
+            <h5>Search Options</h5>
+
+            <div class="panel row">
+                <div ng-show="searchFacets.rating.facetValues" class="columns xlarge-6">
+                    <h5>Rating<span class="alert-box alert round clearSearch" ng-show="searchModel.rating"><a href="" class="close" ng-click="clearSearchOption(searchModel, 'rating')">×</a></span></h5>
+                    <ul class="side-nav">
+                        <li ng-repeat="facet in searchFacets.rating.facetValues" ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="rating" ng-model="searchModel.rating" value="{{facet.value}}"/>
+                                <span rating="facet.value" recipeid="">&#160;</span> ({{facet.count}})
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-show="searchFacets.category.facetValues" class="columns xlarge-6">
+                    <h5>Categories</h5>
+                    <ul class="side-nav">
+                        <li ng-repeat="facet in searchFacets.category.facetValues" ng-click="performSearch()">
+                            <label>
+                                <input type="checkbox" name="categories" ng-model="searchModel.categories[facet.value]" value="{{facet.value}}"/>
+                                {{facet.value}} ({{facet.count}})
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="columns xlarge-6">
+                    <h5>Sort</h5>
+                    <ul class="side-nav">
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="random"/>
+                                Random
+                            </label>
+                        </li>
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="created"/>
+                                Created
+                            </label>
+                        </li>
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="updated"/>
+                                Updated
+                            </label>
+                        </li>
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="score"/>
+                                Relevance
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="columns xlarge-6">
+                    <h5>Direction</h5>
+                    <ul class="side-nav">
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="direction" ng-model="searchModel.direction" value="descending"/>
+                                Descending
+                            </label>
+                        </li>
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="radio" name="direction" ng-model="searchModel.direction" value="ascending"/>
+                                Ascending
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="columns xlarge-6">
+                    <h5>Search Only Archived Recipes</h5>
+                    <ul class="side-nav">
+                        <li ng-click="performSearch()">
+                            <label>
+                                <input type="checkbox" name="archived" ng-model="searchModel.archived" value="archived"/>
+                                Archived
+                            </label>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div ng-show="searchFacets.category.facetValues">
-                <h5>Categories</h5>
-                <ul class="side-nav">
-                    <li ng-repeat="facet in searchFacets.category.facetValues" ng-click="performSearch()">
-                        <label>
-                            <input type="checkbox" name="categories" ng-model="searchModel.categories[facet.value]" value="{{facet.value}}"/>
-                            {{facet.value}} ({{facet.count}})
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            <h5>Sort</h5>
-            <ul class="side-nav">
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="random"/>
-                        Random
-                    </label>
-                </li>
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="created"/>
-                        Created
-                    </label>
-                </li>
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="updated"/>
-                        Updated
-                    </label>
-                </li>
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="radio" name="sortorder" ng-model="searchModel.sortorder" value="score"/>
-                        Relevance
-                    </label>
-                </li>
-            </ul>
-            <h5>Direction</h5>
-            <ul class="side-nav">
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="radio" name="direction" ng-model="searchModel.direction" value="descending"/>
-                        Descending
-                    </label>
-                </li>
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="radio" name="direction" ng-model="searchModel.direction" value="ascending"/>
-                        Ascending
-                    </label>
-                </li>
-            </ul>
-            <h5>Search Only Archived Recipes</h5>
-            <ul class="side-nav">
-                <li ng-click="performSearch()">
-                    <label>
-                        <input type="checkbox" name="archived" ng-model="searchModel.archived" value="archived"/>
-                        Archived
-                    </label>
-                </li>
-            </ul>
         </div>
 
     </aside>

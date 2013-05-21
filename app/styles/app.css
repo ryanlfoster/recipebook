@@ -451,6 +451,9 @@
 .icon-flattr:before{content:"\e0fc"}
 .icon-foursquare-2:before{content:"\e0fb"}
 .icon-github-5:before{content:"\e1c2"}
+.clearfix{zoom:1;clear:both}
+.clearfix:before,.clearfix:after{content:'.';display:block;overflow:hidden;visibility:hidden;font-size:0;line-height:0;width:0;height:0}
+.clearfix:after{clear:both}
 body{background:#eee;min-width:320px}
 body .content *{font-size:16px}
 body.big1 .content *{font-size:105% !important}
@@ -489,11 +492,14 @@ ul.ui-autocomplete a.ui-state-focus{cursor:pointer}
 .stars4{background-position:-13px 0 !important}
 .stars5{background-position:0 0 !important}
 .starsArea{width:13px}
-.mealplan{position:relative;-webkit-transition:opacity .15s linear;-moz-transition:opacity .15s linear;-o-transition:opacity .15s linear;transition:opacity .15s linear}
+.mealplan{position:relative;-webkit-transition:opacity .15s linear;-moz-transition:opacity .15s linear;-o-transition:opacity .15s linear;transition:opacity .15s linear;width:100%}
 .mealplan.callout{border-color:#dadfe6;background:#dadfe6}
 .mealplan.callout:hover{border-color:#575b5f}
 .mealplan .delete{position:absolute;right:4px;top:4px}
 .mealplan .move{position:absolute;left:4px;top:4px}
 .mealplan .content img{max-height:8em}
 @media only screen and (min-width: 635px){.cke_top{display:block !important}
+}@media only screen and (min-width: 128em){.mealplanWrapper > li{padding:0 4px}
+.row .xlarge-6{position:relative;width:50%}
+.row .large-6{position:relative;width:25%}
 }
